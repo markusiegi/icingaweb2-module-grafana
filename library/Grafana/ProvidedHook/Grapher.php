@@ -291,18 +291,18 @@ class Grapher extends GrapherHook
             $serviceName = $this->object->check_command;
             $hostName = $this->object->host_name;
             $parameters = array(
-                'host' => $this->object->host_name,
+                'name' => $this->object->host_name,
             );
-            $link = 'monitoring/host/show';
+            $link = 'icingadb/host?';
         } elseif ($this->object instanceof Service) {
             $this->cacheTime = $this->object->service_next_check - $this->object->service_last_check;
             $serviceName = $this->object->service_description;
             $hostName = $this->object->host->getName();
             $parameters = array(
-                'host' => $this->object->host->getName(),
-                'service' => $this->object->service_description,
+                'name' => $this->object->service_description,
+                'host.name' => $this->object->host->getName(),
             );
-            $link = 'monitoring/service/show';
+            $link = 'icingadb/service?';
         }
 
         // Preserve timerange if set
